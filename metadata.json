@@ -1,0 +1,7 @@
+{
+  "description": "Premium Glassmorphism Developer Portfolio with WhatsApp integration and aesthetic animations.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "name": "App"
+}

@@ -1,0 +1,59 @@
+
+{
+  "profile": {
+    "name": "Soumya Ranjan Das",
+    "role": "Senior Full-Stack Developer",
+    "tagline": "Crafting high-performance digital experiences with an eye for aesthetic precision.",
+    "about": "Based in Puri, Odisha. I specialize in building scalable web applications that merge world-class engineering with premium design aesthetics. My philosophy is simple: if it doesn't look stunning and perform flawlessly, it's not finished.",
+    "location": "Badagan, Nimapada, Puri, Odisha, India 752121",
+    "email": "soumya.rdas@example.com",
+    "whatsapp": "919876543210",
+    "socials": {
+      "github": "https://github.com/soumyardas",
+      "linkedin": "https://linkedin.com/in/soumyardas",
+      "twitter": "https://twitter.com/soumyardas"
+    }
+  },
+  "skills": [
+    { "category": "Frontend", "items": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Next.js"] },
+    { "category": "Backend", "items": ["Node.js", "PostgreSQL", "GraphQL", "Python", "Redis"] },
+    { "category": "Design", "items": ["Figma", "Apple HIG", "UI/UX Research", "3D WebGL"] }
+  ],
+  "experience": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "TechNova Solutions",
+      "period": "2022 - Present",
+      "description": "Architecting premium SaaS platforms for international luxury brands, focusing on performance and glass-morphic UI implementations."
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "Creative Pulse India",
+      "period": "2020 - 2022",
+      "description": "Led the transition to React-based micro-frontends, increasing load performance by 45% across the ecosystem."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Ethereal Commerce",
+      "description": "A high-end e-commerce engine for fashion houses with AR virtual try-on features.",
+      "tech": ["Next.js", "Three.js", "Stripe"],
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800",
+      "url": "https://github.com/soumyardas/ethereal-commerce"
+    },
+    {
+      "title": "Zenith Analytics",
+      "description": "Minimalist dashboard providing deep-learning insights for Indian fintech startups.",
+      "tech": ["React", "D3.js", "Python"],
+      "image": "https://images.unsplash.com/photo-1551288049-bbbda536ad0a?auto=format&fit=crop&q=80&w=800",
+      "url": "https://github.com/soumyardas/zenith-analytics"
+    },
+    {
+      "title": "Lumina Studio",
+      "description": "A portfolio builder for Indian photographers with smart-gallery optimization.",
+      "tech": ["TypeScript", "AWS S3", "Sharp"],
+      "image": "https://images.unsplash.com/photo-1493723843671-1d655e7d987a?auto=format&fit=crop&q=80&w=800",
+      "url": "https://github.com/soumyardas/lumina-studio"
+    }
+  ]
+}
