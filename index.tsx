@@ -116,7 +116,6 @@ const FALLBACK_DATA: PortfolioData = {
 };
 
 // --- Glass Components ---
-// PERFORMANCE: Reduced blur from 2xl to lg for better mobile rendering
 const GlassCard = ({ children, className = "" }: { children?: React.ReactNode, className?: string }) => (
   <div className={`relative bg-white/[0.04] backdrop-blur-lg border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden group/card ${className}`}>
     <div className="absolute inset-0 pointer-events-none border border-white/[0.05] rounded-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]" />
@@ -124,7 +123,6 @@ const GlassCard = ({ children, className = "" }: { children?: React.ReactNode, c
   </div>
 );
 
-// PERFORMANCE: Hide on mobile as mix-blend-overlay on a large scaled SVG is expensive
 const NoiseOverlay = () => (
   <div className="fixed inset-0 pointer-events-none z-[99] opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] scale-[2] hidden md:block" />
 );
@@ -234,7 +232,6 @@ const Navbar = ({ data }: { data: PortfolioData }) => {
 
 const Hero = ({ data }: { data: PortfolioData }) => (
   <section id="home" className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden bg-[#020617]">
-    {/* Performance: Simplified gradients for mobile */}
     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,rgba(30,58,138,0.1),transparent_70%)] pointer-events-none" />
     <div className="absolute top-1/4 -left-20 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-600/[0.05] md:bg-purple-600/10 blur-[100px] md:blur-[180px] rounded-full hidden sm:block md:animate-pulse" />
     <div className="absolute bottom-1/4 -right-20 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-600/[0.05] md:bg-blue-600/10 blur-[100px] md:blur-[180px] rounded-full hidden sm:block md:animate-pulse" style={{ animationDelay: '3s' }} />
@@ -300,11 +297,15 @@ const About = ({ data }: { data: PortfolioData }) => (
           <div className="relative group max-w-sm lg:max-w-none w-full">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-[3rem] blur-3xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-1000" />
             <GlassCard className="aspect-[4/5] relative overflow-hidden rounded-[2.5rem] border border-white/[0.08]">
+               {/* Updated to use profile.jpg from the root */}
                <img 
-                 src="https://ibb.co/9mtvWFb9?auto=format&fit=crop&q=80&w=800" 
+                 src="profile.jpg" 
                  alt={data.profile.name} 
                  loading="lazy"
                  className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 md:group-hover:scale-110 md:group-hover:grayscale-0 md:group-hover:brightness-100"
+                 onError={(e) => {
+                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800';
+                 }}
                />
                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60" />
             </GlassCard>
@@ -427,7 +428,7 @@ const Work = ({ data }: { data: PortfolioData }) => (
               <a href={project.url} target="_blank" rel="noopener noreferrer" className="block outline-none">
                 <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden mb-6 aspect-[3/4] bg-white/[0.02] border border-white/[0.08] shadow-2xl group/img">
                   <img 
-                    src={`${project.image}&w=600&q=70`} 
+                    src={project.image.includes('unsplash') ? `${project.image}&w=600&q=70` : project.image} 
                     alt={project.title}
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105 brightness-[0.6]"
@@ -500,7 +501,7 @@ Brief Objectives: ${formData.objectives}`;
                     <Mail className="w-5 h-5 md:w-7 md:h-7" />
                   </div>
                   <div className="overflow-hidden w-full sm:w-auto">
-                    <div className="text-[9px] text-white/30 uppercase tracking-[0.3em] font-black mb-0.5">Official Inquiry</div>
+                    <div className="text-[9px] text-white/30 uppercase tracking-[0.4em] font-black mb-0.5">Official Inquiry</div>
                     <div className="text-white font-serif text-base md:text-2xl tracking-wide transition-colors truncate">{data.profile.email}</div>
                   </div>
                 </a>
@@ -600,7 +601,9 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('data.json');
+        // PERFORMANCE & FIX: Added cache buster to force refresh from server
+        const cacheBuster = `?v=${new Date().getTime()}`;
+        const response = await fetch('data.json' + cacheBuster);
         if (response.ok) {
           const jsonData = await response.json();
           if (jsonData.projects && jsonData.projects.length > 0) {
