@@ -299,7 +299,7 @@ const About = ({ data }: { data: PortfolioData }) => (
             <GlassCard className="aspect-[4/5] relative overflow-hidden rounded-[2.5rem] border border-white/[0.08]">
                {/* Updated to use profile.jpg from the root */}
                <img 
-                 src="profile.jpg" 
+                 src="/profile.jpg" 
                  alt={data.profile.name} 
                  loading="lazy"
                  className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 md:group-hover:scale-110 md:group-hover:grayscale-0 md:group-hover:brightness-100"
