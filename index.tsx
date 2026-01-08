@@ -301,7 +301,7 @@ const About = ({ data }: { data: PortfolioData }) => (
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-[3rem] blur-3xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-1000" />
             <GlassCard className="aspect-[4/5] relative overflow-hidden rounded-[2.5rem] border border-white/[0.08]">
                <img 
-                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
+                 src="https://ibb.co/9mtvWFb9?auto=format&fit=crop&q=80&w=800" 
                  alt={data.profile.name} 
                  loading="lazy"
                  className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 md:group-hover:scale-110 md:group-hover:grayscale-0 md:group-hover:brightness-100"
